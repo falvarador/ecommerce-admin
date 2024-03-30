@@ -1,48 +1,23 @@
-# Welcome to Remix + Vite!
+# Ecommerce Admin with Remix!
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+This is an ecommerce-admin project made with [Remix](https://remix.run) 💿 and ♥️.
 
-## Typegen
+## Important Sites
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
+1. [React] (https://react.dev/)
+2. [Remix] (https://remix.run/)
+3. [PicoCSS] (https://picocss.com/)
+4. [ArkUI] (https://ark-ui.com/)
+5. [Turso] (https://turso.tech/)
+6. [Zustand] (https://docs.pmnd.rs/zustand/getting-started/introduction)
+7. [Clouflare] (https://workers.cloudflare.com/)
 
-```sh
-npm run typegen
-```
+## Getting Started
 
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+1. Clone this repo
+2. Install dependencies: `npm install`
+3. Run the app: `npm run dev`
 
-## Development
+## Deploy your own
 
-Run the Vite dev server:
-
-```sh
-npm run dev
-```
-
-To run Wrangler:
-
-```sh
-npm run build
-npm run start
-```
-
-## Deployment
-
-> [!WARNING]  
-> Cloudflare does _not_ use `wrangler.toml` to configure deployment bindings.
-> You **MUST** [configure deployment bindings manually in the Cloudflare dashboard][bindings].
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then, deploy your app to Cloudflare Pages:
-
-```sh
-npm run deploy
-```
-
-[bindings]: https://developers.cloudflare.com/pages/functions/bindings/
+Project deployed with [Clouflare](https://workers.cloudflare.com/).
