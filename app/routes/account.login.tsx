@@ -5,11 +5,11 @@ import {
 } from "@remix-run/cloudflare";
 import { Link, useFetcher } from "@remix-run/react";
 
-import {
-  createUserSession,
-  login,
-  LoginCredentials,
-} from "~/shared/session.server";
+// import {
+//   createUserSession,
+//   login,
+//   LoginCredentials,
+// } from "~/shared/session.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const action = async ({ request, context }: ActionFunctionArgs) => {
+export const action = async ({ request /*context*/ }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const { ...values } = Object.fromEntries(formData);
 
@@ -34,15 +34,17 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
     );
   }
 
-  const user = await login(values as unknown as LoginCredentials, context);
-  if (!user)
-    return json(
-      { ok: false, message: "Wrong credentials!" },
-      { status: 400, statusText: "Wrong credentials!" }
-    );
+  // const user = await login(values as unknown as LoginCredentials, context);
+  // if (!user)
+  //   return json(
+  //     { ok: false, message: "Wrong credentials!" },
+  //     { status: 400, statusText: "Wrong credentials!" }
+  //   );
 
-  // assign session
-  return createUserSession(user.id, "/account/dashboard", context);
+  // // assign session
+  // return createUserSession(user.id, "/account/dashboard", context);
+
+  return null;
 };
 
 export default function Login() {
@@ -51,11 +53,11 @@ export default function Login() {
   return (
     <section>
       <h1>Sign in</h1>
-      {fetcher.state === "idle" && fetcher.data && (
+      {/* {fetcher.state === "idle" && fetcher.data && (
         <div>
           <p className="p-2 text-red-700">{fetcher.data.message}</p>
         </div>
-      )}
+      )} */}
 
       <fetcher.Form method="post" className="pt-6 pb-8 mt-4 mb-4 space-y-3">
         <input

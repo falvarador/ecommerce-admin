@@ -4,29 +4,41 @@ import {
   useNavigation as useRemixNavigation,
 } from "@remix-run/react";
 
-const NavigationContext = createContext({});
-const useNavigation = () => useContext(NavigationContext);
-
 type Props = {
   children: ReactNode;
 };
 
-interface Navigation {
+type Navigation = {
   isLoading: boolean;
   locationPath: string;
-  nextPageCurrentlyLoading: boolean;
+  nextPageCurrentlyLoading: string | boolean;
   routePath: string;
-}
+};
+
+const navigation: Navigation = {
+  isLoading: false,
+  locationPath: "",
+  nextPageCurrentlyLoading: false,
+  routePath: "",
+};
+
+const NavigationContext = createContext(navigation);
+const useNavigation = () => useContext(NavigationContext);
 
 const NavigationProvider = ({ children }: Props) => {
-  const navigation = useRemixNavigation();
+  const remixNavigation = useRemixNavigation();
   const routes = useMatches();
 
-  const isLoading = navigation.state === "loading";
-  const routePath = routes[routes.length - 1].pathname;
-  const locationPath = routePath.replace(/\/\s*$/, "");
-  const nextPageCurrentlyLoading =
-    navigation.state === "loading" && navigation.location.pathname;
+  let { isLoading, locationPath, nextPageCurrentlyLoading, routePath } =
+    navigation;
+
+  isLoading = remixNavigation.state === "loading";
+  routePath = routes[routes.length - 1].pathname;
+  locationPath = routePath.replace(/\/\s*$/, "");
+  nextPageCurrentlyLoading =
+    (remixNavigation.state === "loading" &&
+      remixNavigation.location.pathname) ||
+    false;
 
   return (
     <NavigationContext.Provider

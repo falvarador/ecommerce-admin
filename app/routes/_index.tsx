@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
-import { Link } from "@remix-run/react";
+
+import A from "~/shared/components/link";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,7 +16,7 @@ export default function Index() {
   return (
     <main className="container">
       <h1>Welcome to ecommerce admin!</h1>
-      <Link to="account/login"></Link>
+      <A href="account/login">Login</A>
     </main>
   );
 }
