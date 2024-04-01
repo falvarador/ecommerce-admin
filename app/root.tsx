@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react";
 
 import "./tailwind.css";
+import "@park-ui/tailwind-plugin/preset.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

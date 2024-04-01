@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
 
 import A from "~/shared/components/link";
+import { Avatar } from "~/shared/components/ui/avatar";
 import { Button } from "~/shared/components/ui/button";
 
 export const meta: MetaFunction = () => {
@@ -19,6 +20,7 @@ export default function Index() {
       <h1 className="text-3xl font-bold underline">
         Welcome to ecommerce admin!
       </h1>
+      <Avatar name="Christian Schröter" />
       <Button asChild>
         <A href="account/login">Login</A>
       </Button>
