@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import "./pico.zinc.css";
+import "./tailwind.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

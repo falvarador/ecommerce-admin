@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
 
 import A from "~/shared/components/link";
+import { Button } from "~/shared/components/ui/button";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,8 +16,15 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <main className="container">
-      <h1>Welcome to ecommerce admin!</h1>
-      <A href="account/login">Login</A>
+      <h1 className="text-3xl font-bold underline">
+        Welcome to ecommerce admin!
+      </h1>
+      <Button asChild>
+        <A href="account/login">Login</A>
+      </Button>
+      <Button variant="outline" asChild>
+        <A href="account/register">Register</A>
+      </Button>
     </main>
   );
 }
