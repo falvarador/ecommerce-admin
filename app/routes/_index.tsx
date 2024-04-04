@@ -1,32 +1,41 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
+import { useEffect } from "react";
+import {
+  json,
+  redirect,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/cloudflare";
 
-import A from "~/shared/components/link";
-import { Avatar } from "~/shared/components/ui/avatar";
-import { Button } from "~/shared/components/ui/button";
+export const loader = async (args: LoaderFunctionArgs) => {
+  const { userId } = await requireUserSession(args);
 
+  const service = dependenciesLocator.storeService();
+  const { store, error } = await service.getStoreByUser(userId);
+
+  if (error) {
+    throw json({ error: error.kind }, { status: 500 });
+  }
+
+  if (store) {
+    return redirect(`/${store.id}`);
+  }
+
+  return {};
+};
 export const meta: MetaFunction = () => {
   return [
-    { title: "ecommerce admin" },
-    {
-      name: "description",
-      content: "Welcome to ecommerce admin!",
-    },
+    { title: "Dashboard" },
+    { name: "description", content: "ecommerce admin dashboard" },
   ];
 };
-
 export default function Index() {
-  return (
-    <main className="container">
-      <h1 className="text-3xl font-bold underline">
-        Welcome to ecommerce admin!
-      </h1>
-      <Avatar name="Christian Schröter" />
-      <Button asChild>
-        <A href="account/login">Login</A>
-      </Button>
-      <Button variant="outline" asChild>
-        <A href="account/register">Register</A>
-      </Button>
-    </main>
-  );
+  const { isOpen, onOpen } = useStoreModal();
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+
+  return null;
 }

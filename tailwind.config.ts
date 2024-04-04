@@ -3,9 +3,14 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: ["./app/**/*.{ts,tsx}"],
-  darkMode: ["class"],
+  darkMode: "selector",
   theme: {
     extend: {},
   },
   plugins: [parkwindPlugin],
+  parkUI: {
+    accentColor: "gold",
+    grayColor: "sand",
+    borderRadius: "sm",
+  },
 } satisfies Config;

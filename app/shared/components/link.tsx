@@ -1,7 +1,7 @@
 import { Link as RemixLink } from "@remix-run/react";
 import React from "react";
 
-import { useNavigation } from "~/shared/context/navigation";
+import { useNavigation } from "~/shared/context/navigation-provider";
 
 interface Props {
   href: string;
