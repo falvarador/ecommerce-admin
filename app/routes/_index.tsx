@@ -1,24 +1,26 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import {
-  json,
-  redirect,
-  type LoaderFunctionArgs,
+  // json,
+  // redirect,
+  // type LoaderFunctionArgs,
   type MetaFunction,
 } from "@remix-run/cloudflare";
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const { userId } = await requireUserSession(args);
+import { NewStoreModal } from "~/shared/components/new-store-modal";
 
-  const service = dependenciesLocator.storeService();
-  const { store, error } = await service.getStoreByUser(userId);
+export const loader = async (/*args: LoaderFunctionArgs*/) => {
+  // const { userId } = await requireUserSession(args);
 
-  if (error) {
-    throw json({ error: error.kind }, { status: 500 });
-  }
+  // const service = dependenciesLocator.storeService();
+  // const { store, error } = await service.getStoreByUser(userId);
 
-  if (store) {
-    return redirect(`/${store.id}`);
-  }
+  // if (error) {
+  //   throw json({ error: error.kind }, { status: 500 });
+  // }
+
+  // if (store) {
+  //   return redirect(`/${store.id}`);
+  // }
 
   return {};
 };
@@ -29,13 +31,23 @@ export const meta: MetaFunction = () => {
   ];
 };
 export default function Index() {
-  const { isOpen, onOpen } = useStoreModal();
+  const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(() => {
-    if (!isOpen) {
-      onOpen();
-    }
-  }, [isOpen, onOpen]);
+  // useEffect(() => {
+  //   if (!isOpen) {
+  //     onOpen();
+  //   }
+  // }, [isOpen, onOpen]);
 
-  return null;
+  return (
+    <div>
+      <NewStoreModal
+        title="Demo modal"
+        description="Demo description"
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      ></NewStoreModal>
+      <button>Submit</button>
+    </div>
+  );
 }

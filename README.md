@@ -6,11 +6,10 @@ This is an ecommerce-admin project made with [Remix](https://remix.run) 💿 and
 
 1. [React] (https://react.dev/)
 2. [Remix] (https://remix.run/)
-3. [ParkUI] (https://park-ui.com/)
+3. [PicoCSS] (https://picocss.com/)
 4. [ArkUI] (https://ark-ui.com/)
 5. [Turso] (https://turso.tech/)
-6. [Zustand] (https://docs.pmnd.rs/zustand/getting-started/introduction)
-7. [Clouflare] (https://workers.cloudflare.com/)
+6. [Clouflare] (https://workers.cloudflare.com/)
 
 ## Getting Started
 
