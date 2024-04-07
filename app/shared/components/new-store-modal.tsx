@@ -1,9 +1,9 @@
 interface Props {
   title: string;
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
-export const NewStoreModal = ({ title, isOpen }: Props) => {
+export const NewStoreModal = ({ title, isOpen = false }: Props) => {
   return (
     <dialog open={isOpen}>
       <article>

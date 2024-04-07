@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useLoaderData } from "@remix-run/react";
 import {
-  // json,
+  json,
   // redirect,
-  // type LoaderFunctionArgs,
+  type LoaderFunctionArgs,
   type MetaFunction,
 } from "@remix-run/cloudflare";
 
-import { NewStoreModal } from "~/shared/components/new-store-modal";
+import {
+  ModalAction,
+  ModalContainer,
+  ModalProps,
+} from "~/shared/components/modal";
+import Link from "~/shared/components/link";
 
-export const loader = async (/*args: LoaderFunctionArgs*/) => {
+export const loader = async (args: LoaderFunctionArgs) => {
   // const { userId } = await requireUserSession(args);
+  const queryParams = new URL(args.request.url).searchParams;
+  const modalAction = queryParams.get("modal-type") as ModalAction | undefined;
 
   // const service = dependenciesLocator.storeService();
   // const { store, error } = await service.getStoreByUser(userId);
@@ -22,32 +29,43 @@ export const loader = async (/*args: LoaderFunctionArgs*/) => {
   //   return redirect(`/${store.id}`);
   // }
 
-  return {};
+  const modalProps = (() => {
+    if (modalAction === "new-store") {
+      return {
+        action: "new-store",
+      } as ModalProps;
+    }
+    if (modalAction === "example-modal") {
+      return {
+        action: "example-modal",
+      } as ModalProps;
+    }
+
+    return null;
+  })();
+
+  // const queryParams = new URL(request.url).searchParams;
+
+  return json(modalProps);
 };
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Dashboard" },
     { name: "description", content: "ecommerce admin dashboard" },
   ];
 };
-export default function Index() {
-  const [isOpen, setIsOpen] = useState(true);
 
-  // useEffect(() => {
-  //   if (!isOpen) {
-  //     onOpen();
-  //   }
-  // }, [isOpen, onOpen]);
+export default function Index() {
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>
-      <NewStoreModal
-        title="Demo modal"
-        description="Demo description"
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-      ></NewStoreModal>
-      <button>Submit</button>
+      <ModalContainer action={data?.action} />
+      <div role="group">
+        <Link href="?modal-type=example-modal">Example modal</Link>
+        <Link href="?modal-type=new-store">New store modal</Link>
+      </div>
     </div>
   );
 }
