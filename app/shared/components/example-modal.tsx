@@ -1,29 +1,34 @@
-import { Link } from "@remix-run/react";
+import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+// import { Link } from "@remix-run/react";
 
 interface Props {
   title: string;
-  isOpen?: boolean;
 }
 
-export const ExampleModal = ({ title, isOpen = false }: Props) => {
+export const ExampleModal = ({ title }: Props) => {
   return (
-    <dialog open={isOpen}>
-      <article>
-        <header>
-          <Link to="/" aria-label="Close" rel="prev" />
-          <p>
-            <strong>🗓️ {title}</strong>
-          </p>
-        </header>
-        <p>
-          We&apos;re excited to have you join us for our upcoming event. Please
-          arrive at the museum on time to check in and get started.
-        </p>
-        <ul>
-          <li>Date: Saturday, April 15</li>
-          <li>Time: 10:00am - 12:00pm</li>
-        </ul>
-      </article>
-    </dialog>
+    <AlertDialog.Root>
+      <AlertDialog.Trigger>
+        <Button>{title}</Button>
+      </AlertDialog.Trigger>
+      <AlertDialog.Content maxWidth="450px">
+        <AlertDialog.Title>{title}</AlertDialog.Title>
+        <AlertDialog.Description size="2">
+          Are you sure? This application will no longer be accessible and any
+          existing sessions will be expired.
+        </AlertDialog.Description>
+
+        <Flex gap="3" mt="4" justify="end">
+          <AlertDialog.Cancel>
+            <Button variant="soft" color="gray">
+              Cancel
+            </Button>
+          </AlertDialog.Cancel>
+          <AlertDialog.Action>
+            <Button variant="solid">{title}</Button>
+          </AlertDialog.Action>
+        </Flex>
+      </AlertDialog.Content>
+    </AlertDialog.Root>
   );
 };

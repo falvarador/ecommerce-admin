@@ -1,7 +1,5 @@
-import { Link as RemixLink } from "@remix-run/react";
+import { Link as RemixLink, useLocation } from "@remix-run/react";
 import React from "react";
-
-import { useNavigation } from "~/shared/context/navigation-provider";
 
 interface Props {
   href: string;
@@ -10,17 +8,16 @@ interface Props {
   children?: React.ReactNode;
 }
 
-export default function A({
+export default function Link({
   "aria-current": ariaCurrent,
   preventScrollReset = false,
   href,
-
   ...props
 }: Props) {
-  const { locationPath } = useNavigation();
+  const { pathname } = useLocation();
   const isExternalLink = href ? href.startsWith("http") : false;
   const isCurrent =
-    (locationPath === href && ariaCurrent !== false) ||
+    (pathname === href && ariaCurrent !== false) ||
     (ariaCurrent && ariaCurrent !== false);
 
   return (

@@ -15,7 +15,7 @@ interface CookiesEnv {
   SESSION_SECRET: string;
 }
 
-export function cookieSessionCreation(context: AppLoadContext) {
+export function createCookieSession(context: AppLoadContext) {
   const env = context.cloudflare.env as unknown as CookiesEnv;
   const { SESSION_SECRET } = env;
 
