@@ -11,10 +11,7 @@ import {
 } from "~/features/auth/auth.request.server";
 
 export function authHandler() {
-  const register = async (
-    request: RegisterRequest,
-    context: AppLoadContext
-  ) => {
+  const signUp = async (request: RegisterRequest, context: AppLoadContext) => {
     const { firstName, lastName, email, password, phone } = request;
 
     // Validate credentials
@@ -73,7 +70,7 @@ export function authHandler() {
     };
   };
 
-  const login = async (request: LoginRequest, context: AppLoadContext) => {
+  const signIn = async (request: LoginRequest, context: AppLoadContext) => {
     const { email, password } = request;
     const db = buildDbClient(context);
 
@@ -95,7 +92,7 @@ export function authHandler() {
   };
 
   return {
-    login,
-    register,
+    signUp,
+    signIn,
   };
 }

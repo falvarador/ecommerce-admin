@@ -3,7 +3,7 @@ import {
   json,
   type MetaFunction,
 } from "@remix-run/cloudflare";
-import { useFetcher, Link as RemixLink } from "@remix-run/react";
+import { Form, Link as RemixLink } from "@remix-run/react";
 
 import {
   Box,
@@ -23,13 +23,13 @@ import { sessionHandler } from "~/features/session/session.handler.server";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Log in | eCommerce Admin" },
-    { name: "description", content: "Log into your eCommerce Admin account" },
+    { title: "Sing in | eCommerce Admin" },
+    { name: "description", content: "Sing in your eCommerce Admin account" },
   ];
 };
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const { login } = authHandler();
+  const { signIn } = authHandler();
   const { createUserSession } = sessionHandler();
 
   const formData = await request.formData();
@@ -47,7 +47,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
     );
   }
 
-  const user = await login(values as unknown as LoginRequest, context);
+  const user = await signIn(values as unknown as LoginRequest, context);
   if (!user)
     return json(
       { ok: false, message: "Wrong credentials!" },
@@ -58,24 +58,13 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   return createUserSession(context, "/dashboard", user.id);
 };
 
-export default function Login() {
-  const fetcher = useFetcher<React.ReactNode>();
-  // const isLoading = fetcher.state === "loading";
-
-  // {
-  //   fetcher.state === "idle" && fetcher.data && (
-  //     <div>
-  //       <p className="">{fetcher.data.message}</p>
-  //     </div>
-  //   );
-  // }
-
+export default function SignIn() {
   return (
     <Card size="4" style={{ width: 400, height: 400 }}>
       <Heading as="h3" size="6" trim="start" mb="5">
         Sign in
       </Heading>
-      <fetcher.Form method="post">
+      <Form method="post">
         <Box mb="5">
           <Text as="label" size="2" weight="medium" mb="1" htmlFor="email">
             Email
@@ -120,11 +109,11 @@ export default function Login() {
         </Box>
         <Flex mt="6" justify="end" gap="3">
           <Button variant="soft" asChild>
-            <RemixLink to="/register">Create an account</RemixLink>
+            <RemixLink to="/signup">Create an account</RemixLink>
           </Button>
           <Button type="submit">Sign in</Button>
         </Flex>
-      </fetcher.Form>
+      </Form>
     </Card>
   );
 }

@@ -12,7 +12,7 @@ export const loader = async (args: LoaderFunctionArgs) => {
   const userId = await validateUserSession(context, request, "/login");
 
   if (!userId || typeof userId !== "string") {
-    return redirect("/login");
+    return redirect("/signin");
   }
 
   const { storeId } = args.params;

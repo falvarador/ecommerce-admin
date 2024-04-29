@@ -6,13 +6,13 @@ import { PanelBackgroundImage } from "~/shared/components/panel-background-image
 
 export default function AccountIndex() {
   return (
-    <Box width="auto" height="100vh">
+    <Box width="auto">
       <Grid columns={{ initial: "1", lg: "2" }} gap="0">
         <Flex
           align="center"
           justify="center"
           position="relative"
-          height={{ initial: "100vh" }}
+          // height={{ initial: "100vh" }}
           py={{ initial: "7", xs: "9", sm: "100px" }}
           px={{ initial: "4", sm: "6" }}
           style={{
@@ -34,7 +34,7 @@ export default function AccountIndex() {
           style={{
             background: "var(--color-background)",
           }}
-          height={{ initial: "100vh" }}
+          // height={{ initial: "100vh" }}
         ></Box>
       </Grid>
     </Box>

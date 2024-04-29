@@ -20,13 +20,16 @@ import { authHandler } from "~/features/auth/auth.handler.server";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Register | eCommerce Admin" },
-    { name: "description", content: "Create a new account in eCommerce Admin" },
+    { title: "Sing up | eCommerce Admin" },
+    {
+      name: "description",
+      content: "Sing up a new account in eCommerce Admin",
+    },
   ];
 };
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
-  const { register } = authHandler();
+  const { signUp } = authHandler();
 
   const formData = await request.formData();
   const { ...values } = Object.fromEntries(formData);
@@ -69,7 +72,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
     );
   }
 
-  const accountCreation = await register(
+  const accountCreation = await signUp(
     {
       firstName: values.first_name,
       lastName: values.last_name,
@@ -81,7 +84,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
   );
 
   if (accountCreation.user) {
-    return redirect("/login");
+    return redirect("/signin");
   }
 
   return json(
@@ -190,7 +193,7 @@ export default function Register() {
         </Box>
         <Flex mt="6" justify="end" gap="3">
           <Button variant="soft" asChild>
-            <RemixLink to="/login">Have an account?</RemixLink>
+            <RemixLink to="/signin">Have an account?</RemixLink>
           </Button>
           <Button type="submit">Sign up</Button>
         </Flex>
