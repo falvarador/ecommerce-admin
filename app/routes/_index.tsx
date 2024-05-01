@@ -1,5 +1,4 @@
 import { type MetaFunction } from "@remix-run/cloudflare";
-import { Container, Text } from "@radix-ui/themes";
 
 import { ExampleModal } from "~/shared/components/example-modal";
 import Link from "~/shared/components/link";
@@ -51,11 +50,12 @@ export default function Index() {
   // const data = useLoaderData<typeof loader>();
 
   return (
-    <Container align="center">
-      <Text>Hello from Radix Themes :)</Text>
+    <main className="container">
+      <h2> Hello from Radix Themes :)</h2>
+      <button>Button</button>
       <ExampleModal title="Example modal"></ExampleModal>
       <Link href="?modal-type=example-modal">Example modal</Link>
       <Link href="?modal-type=new-store">New store modal</Link>
-    </Container>
+    </main>
   );
 }

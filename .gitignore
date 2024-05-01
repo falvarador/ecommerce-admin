@@ -10,5 +10,5 @@ wrangler.toml
 worker-configuration.d.ts
 
 # OS generated files
- .DS_Store
- public/.DS_Store
+.DS_Store
+**/.DS_Store

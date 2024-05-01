@@ -3,19 +3,7 @@ import {
   json,
   type MetaFunction,
 } from "@remix-run/cloudflare";
-import { Form, Link as RemixLink } from "@remix-run/react";
-
-import {
-  Box,
-  Button,
-  Card,
-  Checkbox,
-  Flex,
-  Heading,
-  Link,
-  Text,
-  TextField,
-} from "@radix-ui/themes";
+import { Form, Link } from "@remix-run/react";
 
 import { authHandler } from "~/features/auth/auth.handler.server";
 import { LoginRequest } from "~/features/auth/auth.request.server";
@@ -60,60 +48,42 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 
 export default function SignIn() {
   return (
-    <Card size="4" style={{ width: 400, height: 400 }}>
-      <Heading as="h3" size="6" trim="start" mb="5">
-        Sign in
-      </Heading>
+    <section className="section">
+      <h2 className="title">Sign in</h2>
       <Form method="post">
-        <Box mb="5">
-          <Text as="label" size="2" weight="medium" mb="1" htmlFor="email">
+        <fieldset className="field">
+          <label className="label" htmlFor="email">
             Email
-          </Text>
-          <TextField.Root
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            aria-label="Email address"
-            placeholder="Enter your email address"
-          />
-        </Box>
-        <Box mb="5" position="relative">
-          <Flex align="baseline" justify="between" mb="1">
-            <Text as="label" size="2" weight="medium" htmlFor="password">
-              Password
-            </Text>
-            <Link asChild size="2">
-              <RemixLink to="#">Forgot password?</RemixLink>
-            </Link>
-          </Flex>
-          <TextField.Root
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            aria-label="Password"
-            minLength={8}
-            required
-          />
-        </Box>
-        <Box mb="5" position="relative">
-          <Flex align="center" justify="start" mb="1" gap="2">
-            <Checkbox id="remember" name="remember" />
-            <Text as="label" size="2" htmlFor="remember">
-              Remember me
-            </Text>
-          </Flex>
-        </Box>
-        <Flex mt="6" justify="end" gap="3">
-          <Button variant="soft" asChild>
-            <RemixLink to="/signup">Create an account</RemixLink>
-          </Button>
-          <Button type="submit">Sign in</Button>
-        </Flex>
+          </label>
+          <div className="control">
+            <input
+              className="input"
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              aria-label="Email address"
+              placeholder="Enter your email address"
+            />
+          </div>
+        </fieldset>
+        <label htmlFor="password">Password</label>
+        <Link to="#">Forgot password?</Link>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          placeholder="Password"
+          aria-label="Password"
+          minLength={8}
+          required
+        />
+        <input type="checkbox" id="remember" name="remember" />
+        <label htmlFor="remember">Remember me</label>
+        <Link to="/signup">Create an account</Link>
       </Form>
-    </Card>
+    </section>
   );
 }

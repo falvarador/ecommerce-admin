@@ -6,10 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { Theme } from "@radix-ui/themes";
-
 import "./global.css";
-import "@radix-ui/themes/styles.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,15 +18,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Theme
-          accentColor="teal"
-          grayColor="sand"
-          radius="small"
-          appearance="light"
-        >
-          {children}
-          {/* <ThemePanel /> */}
-        </Theme>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,14 +1,4 @@
 import {
-  Box,
-  Button,
-  Card,
-  Flex,
-  Heading,
-  Text,
-  TextField,
-} from "@radix-ui/themes";
-
-import {
   json,
   redirect,
   MetaFunction,
@@ -97,108 +87,76 @@ export default function Register() {
   const fetcher = useFetcher<React.ReactNode>();
 
   return (
-    <Card size="4" style={{ width: 400 }}>
-      <Heading as="h3" size="6" trim="start" mb="5">
-        Create an Account
-      </Heading>
+    <section>
+      <h2>Create an Account</h2>
       <fetcher.Form method="post">
-        <Box mb="5">
-          <Text as="label" size="2" weight="medium" mb="1" htmlFor="first_name">
-            First Name *
-          </Text>
-          <TextField.Root
-            id="first_name"
-            name="first_name"
-            type="text"
-            autoComplete="given-name"
-            required
-            aria-label="Firt name"
-            placeholder="Enter your first name"
-          />
-        </Box>
-        <Box mb="5">
-          <Text as="label" size="2" weight="medium" mb="1" htmlFor="last_name">
-            Last Name *
-          </Text>
-          <TextField.Root
-            id="last_name"
-            name="last_name"
-            type="text"
-            autoComplete="additional-name"
-            required
-            aria-label="Last name"
-            placeholder="Enter your last name"
-          />
-        </Box>
-        <Box mb="5">
-          <Text as="label" size="2" weight="medium" mb="1" htmlFor="phone">
-            Phone Number
-          </Text>
-          <TextField.Root
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="mobile tel-local-prefix webauthn"
-            aria-label="Phone"
-            placeholder="Enter your phone number"
-          />
-        </Box>
-        <Box mb="5">
-          <Text as="label" size="2" weight="medium" mb="1" htmlFor="email">
-            Email *
-          </Text>
-          <TextField.Root
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            aria-label="Email address"
-            placeholder="Enter your email address"
-          />
-        </Box>
-        <Box mb="5" position="relative">
-          <Flex align="baseline" justify="between" mb="1">
-            <Text as="label" size="2" weight="medium" htmlFor="password">
-              Password *
-            </Text>
-          </Flex>
-          <TextField.Root
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            aria-label="Password"
-            minLength={8}
-            required
-          />
-        </Box>
-        <Box mb="5" position="relative">
-          <Flex align="baseline" justify="between" mb="1">
-            <Text as="label" size="2" weight="medium" htmlFor="password_repeat">
-              Repeat Password *
-            </Text>
-          </Flex>
-          <TextField.Root
-            id="password_repeat"
-            name="password_repeat"
-            type="password"
-            autoComplete="current-password"
-            placeholder="Repeat Password"
-            aria-label="Repeat Password"
-            minLength={8}
-            required
-          />
-        </Box>
-        <Flex mt="6" justify="end" gap="3">
-          <Button variant="soft" asChild>
-            <RemixLink to="/signin">Have an account?</RemixLink>
-          </Button>
-          <Button type="submit">Sign up</Button>
-        </Flex>
+        <label htmlFor="first_name">First Name *</label>
+        <input
+          id="first_name"
+          name="first_name"
+          type="text"
+          autoComplete="given-name"
+          required
+          aria-label="Firt name"
+          placeholder="Enter your first name"
+        />
+        <label htmlFor="last_name">Last Name *</label>
+        <input
+          id="last_name"
+          name="last_name"
+          type="text"
+          autoComplete="additional-name"
+          required
+          aria-label="Last name"
+          placeholder="Enter your last name"
+        />
+        <label htmlFor="phone">Phone Number</label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          autoComplete="mobile tel-local-prefix webauthn"
+          aria-label="Phone"
+          placeholder="Enter your phone number"
+        />
+
+        <label htmlFor="email">Email *</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          aria-label="Email address"
+          placeholder="Enter your email address"
+        />
+
+        <label htmlFor="password">Password *</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          placeholder="Password"
+          aria-label="Password"
+          minLength={8}
+          required
+        />
+        <label htmlFor="password_repeat">Repeat Password *</label>
+        <input
+          id="password_repeat"
+          name="password_repeat"
+          type="password"
+          autoComplete="current-password"
+          placeholder="Repeat Password"
+          aria-label="Repeat Password"
+          minLength={8}
+          required
+        />
+        <RemixLink to="/signin">Have an account?</RemixLink>
+        <button type="submit">Sign up</button>
       </fetcher.Form>
-    </Card>
+    </section>
     // <div className="flex justify-center my-24 px-4">
     //   <div className="max-w-md w-full">
     //     <h1 className="text-4xl">Create an Account.</h1>
