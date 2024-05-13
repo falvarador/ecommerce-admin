@@ -9,6 +9,8 @@ import { authHandler } from "~/features/auth/auth.handler.server";
 import { LoginRequest } from "~/features/auth/auth.request.server";
 import { sessionHandler } from "~/features/session/session.handler.server";
 
+import "~/styles/_auth.signin.css";
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Sing in | eCommerce Admin" },
@@ -48,41 +50,49 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 
 export default function SignIn() {
   return (
-    <section className="section">
-      <h2 className="title">Sign in</h2>
-      <Form method="post">
-        <fieldset className="field">
-          <label className="label" htmlFor="email">
+    <section className="signin__container">
+      <h2 className="">Welcome back!</h2>
+      <p className="">Enter your Credentials to access your account</p>
+      <Form className="" method="post">
+        <fieldset className="">
+          <label className="" htmlFor="email">
             Email
           </label>
-          <div className="control">
-            <input
-              className="input"
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              aria-label="Email address"
-              placeholder="Enter your email address"
-            />
-          </div>
+          <input
+            className=""
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            aria-label="Email address"
+            placeholder="Enter your email address"
+          />
+        </fieldset>
+        <fieldset className="">
+          <label className="" htmlFor="password">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="Your password"
+            aria-label="Password"
+            minLength={8}
+            required
+          />
         </fieldset>
         <label htmlFor="password">Password</label>
         <Link to="#">Forgot password?</Link>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="Password"
-          aria-label="Password"
-          minLength={8}
-          required
-        />
+
         <input type="checkbox" id="remember" name="remember" />
         <label htmlFor="remember">Remember me</label>
         <Link to="/signup">Create an account</Link>
+        <button type="submit" className="">
+          Singin
+        </button>
       </Form>
     </section>
   );

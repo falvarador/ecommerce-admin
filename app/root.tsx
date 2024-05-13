@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import "./global.css";
+import "~/global.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +17,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body data-scaling="100%" className="base-theme base-reset">
         {children}
         <ScrollRestoration />
         <Scripts />

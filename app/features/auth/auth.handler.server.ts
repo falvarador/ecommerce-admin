@@ -1,6 +1,5 @@
 import { AppLoadContext } from "@remix-run/cloudflare";
 import { passwords, users } from "../../../drizzle/schema";
-import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcryptjs";
 
 import { buildDbClient } from "~/shared/db.client.server";
@@ -34,7 +33,7 @@ export function authHandler() {
       };
     }
 
-    const newUuid = uuidv4();
+    const newUuid = crypto.randomUUID();
     await db
       .insert(users)
       .values({
