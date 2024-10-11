@@ -1,0 +1,21 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import AstroHeart from "@/components/AstroHeart.astro";
+import AstroGreet from "@/components/AstroGreet.astro";
+import Code from "@/components/Code.astro";
+import TodoList from "@/components/TodoList.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <!-- <Form title="JS Validation" body="This is a card" href="/card" /> -->
+    <button class="btn">Button</button>
+    <AstroHeart />
+    <AstroGreet message="Hello, from my web components with Astro 🚀" />
+    <Code />
+    <TodoList />
+  </main>
+</Layout>
+
+<style></style>

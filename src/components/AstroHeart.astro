@@ -1,0 +1,39 @@
+<astro-heart>
+  <button class="btn btn-primary" aria-label="Heart">💜 × <span>0</span></button
+  >
+</astro-heart>
+
+<script>
+  class AstroHeart extends HTMLElement {
+    count: number;
+    button: HTMLButtonElement | null;
+    span: HTMLSpanElement | null;
+
+    constructor() {
+      super();
+
+      this.count = 0;
+      this.button = this.querySelector<HTMLButtonElement>("button");
+      this.span = this.querySelector<HTMLSpanElement>("span");
+    }
+
+    handleEvent(event: Event) {
+      if (event.type === "click") this.handleClick();
+    }
+
+    handleClick() {
+      this.count++;
+      this.span!.textContent = this.count.toString();
+    }
+
+    connectedCallback() {
+      this.button?.addEventListener("click", this);
+    }
+
+    disconnectedCallback() {
+      this.button?.removeEventListener("click", this);
+    }
+  }
+
+  customElements.define("astro-heart", AstroHeart);
+</script>
