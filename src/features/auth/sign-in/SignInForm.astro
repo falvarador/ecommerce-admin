@@ -1,0 +1,77 @@
+---
+import { actions } from "astro:actions";
+
+const result = Astro.getActionResult(actions.signin);
+---
+
+{
+  result?.error && (
+    <p class="error-message">Unable to register. {result?.error}.</p>
+  )
+}
+
+<signin-form>
+  <form action={actions.signin} method="post" novalidate>
+    <fieldset>
+      <input
+        aria-label="example@mail.com"
+        autocomplete="off"
+        class="input"
+        id="email"
+        name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        placeholder="example@mail.com"
+        required
+        type="email"
+      />
+      <small hidden id="invalid-helper">
+        Please enter a valid email address.
+      </small>
+      <button type="submit" name="submitButton">Sign In</button>
+    </fieldset>
+  </form>
+</signin-form>
+
+<script>
+  class SignInForm extends HTMLElement {
+    form: HTMLFormElement | null;
+
+    constructor() {
+      super();
+      this.form = this.querySelector<HTMLFormElement>("form");
+    }
+
+    handleEvent(event: Event) {
+      if (event.type === "submit") this.handleSubmit(event);
+    }
+
+    handleSubmit(event: Event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isFormValid = this.form!.checkValidity();
+      if (isFormValid) return;
+
+      // Find the first invalid input field and set focus to it.
+      const firstInvalidElement =
+        this.querySelector<HTMLInputElement>("input:invalid");
+
+      firstInvalidElement?.focus();
+      firstInvalidElement?.setAttribute("aria-invalid", "true");
+      firstInvalidElement?.setAttribute("aria-describedby", "invalid-helper");
+      (firstInvalidElement!.nextElementSibling as HTMLElement).removeAttribute(
+        "hidden"
+      );
+    }
+
+    connectedCallback() {
+      this.form?.addEventListener("submit", this);
+    }
+
+    disconnectedCallback() {
+      this.form?.removeEventListener("submit", this);
+    }
+  }
+
+  customElements.define("signin-form", SignInForm);
+</script>
