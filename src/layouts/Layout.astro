@@ -1,5 +1,6 @@
 ---
-import "@/styles.css";
+import "@/styles/reset.css";
+import "@/styles/tokens.css";
 
 interface Props {
   title: string;
@@ -21,3 +22,8 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
+<!-- <script
+  is:inline
+  type="module"
+  src="node_modules/@freshworks/crayons/dist/crayons/crayons.js"></script> -->

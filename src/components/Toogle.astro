@@ -1,0 +1,26 @@
+<menu-toggle>
+  <template shadowrootmode="open">
+    <button>
+      <slot />
+    </button>
+  </template>
+  Open Menu
+</menu-toggle>
+
+<script>
+  class MenuToggle extends HTMLElement {
+    constructor() {
+      super();
+
+      // Check for a Declarative Shadow Root:
+      const internals = this.attachInternals();
+      let shadow = internals.shadowRoot;
+
+      shadow!.firstElementChild!.addEventListener("click", () =>
+        alert("clicked")
+      );
+    }
+  }
+
+  customElements.define("menu-toggle", MenuToggle);
+</script>
