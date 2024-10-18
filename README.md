@@ -6,10 +6,7 @@ This is an ecommerce-admin project made with [Astro](https://astro.build/) 🚀 
 
 1. [Astro] (https://astro.build/)
 2. [Deno] (https://deno.com/)
-3. [ReefJS] (https://reefjs.com/)
-4. [FlyonUI] (https://flyonui.com/)
-5. [TailwindCSS] (https://tailwindcss.com/)
-6. [Supabase] (https://supabase.com/)
+3. [Supabase] (https://supabase.com/)
 
 ## Getting Started
 

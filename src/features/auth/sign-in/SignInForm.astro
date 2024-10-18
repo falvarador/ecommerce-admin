@@ -11,12 +11,18 @@ const result = Astro.getActionResult(actions.signin);
 }
 
 <signin-form>
-  <form action={actions.signin} method="post" novalidate>
-    <fieldset>
+  <form action={actions.signin} method="post">
+    <fieldset class="input-container">
+      <label
+        for="email"
+        class="field-control-label required"
+        aria-hidden="false">Email</label
+      >
       <input
         aria-label="example@mail.com"
+        aria-describedby="hint-email"
         autocomplete="off"
-        class="input"
+        class="input-container-inner inner__content input__label"
         id="email"
         name="email"
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
@@ -24,9 +30,7 @@ const result = Astro.getActionResult(actions.signin);
         required
         type="email"
       />
-      <small hidden id="invalid-helper">
-        Please enter a valid email address.
-      </small>
+      <span aria-live="polite" class="error-message"></span>
       <button class="btn btn-primary" type="submit" name="submitButton"
         >Sign In</button
       >
@@ -41,6 +45,7 @@ const result = Astro.getActionResult(actions.signin);
     constructor() {
       super();
       this.form = this.querySelector<HTMLFormElement>("form");
+      this.form?.setAttribute("novalidate", "");
     }
 
     handleEvent(event: Event) {
