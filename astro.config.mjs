@@ -1,10 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import deno from "@deno/astro-adapter";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: deno(),
   output: "server",
+  adapter: cloudflare(),
 });
