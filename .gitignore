@@ -23,6 +23,11 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# turso database
+local.db
+local.db-shm
+local.db-wal
+
 # locks files
 package-lock.json
 deno.lock

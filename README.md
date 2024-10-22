@@ -5,7 +5,7 @@ This is an ecommerce-admin project made with [Astro](https://astro.build/) 🚀 
 ## Important Sites
 
 1. [Astro] (https://astro.build/)
-2. [Deno] (https://deno.com/)
+2. [Cloudflare] (https://cloudflare.com/)
 3. [Supabase] (https://supabase.com/)
 
 ## Getting Started
@@ -16,4 +16,4 @@ This is an ecommerce-admin project made with [Astro](https://astro.build/) 🚀 
 
 ## Deploy your own
 
-Project deployed with [Deno](https://deno.com/) and [Supabase](https://supabase.com/).
+Project deployed with [Cloudflare](https://cloudflare.com/) and [Supabase](https://supabase.com/).

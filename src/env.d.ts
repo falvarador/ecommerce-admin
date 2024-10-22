@@ -1,18 +1,30 @@
 /// <reference path="../.astro/types.d.ts" />
 
-type Models = import("node-appwrite").Models;
+interface User {
+  object: "user";
+  id: string;
+  email: string;
+  emailVerified: boolean;
+  profilePictureUrl: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
 
 declare namespace App {
   interface Locals {
-    user?: Models.User<Models.Preferences>;
+    user?: User;
   }
 }
 
 interface ImportMetaEnv {
-  readonly APPWRITE_KEY: string;
-  readonly PROJECT_HOST: string;
-  readonly PUBLIC_APPWRITE_ENDPOINT: string;
-  readonly PUBLIC_APPWRITE_PROJECT: string;
+  readonly WORKOS_API_KEY: string;
+  readonly WORKOS_CLIENT_ID: string;
+  readonly WORKOS_COOKIE_PASSWORD: string;
+  readonly WORKOS_REDIRECT_URI: string;
+  readonly TURSO_AUTH_TOKEN: string;
+  readonly TURSO_DATABASE_URL: string;
 }
 
 interface ImportMeta {

@@ -7,16 +7,15 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "preview-server": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "turso": "turso dev --db-file local.db"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^11.1.0",
-    "astro": "^4.16.6",
+    "@libsql/client": "^0.14.0",
+    "@workos-inc/node": "^7.29.0",
+    "astro": "^4.16.7",
     "typescript": "^5.6.3"
-  },
-  "devDependencies": {
-    "node-appwrite": "^14.1.0"
   }
 }
